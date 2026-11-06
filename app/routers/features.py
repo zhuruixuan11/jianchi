@@ -196,7 +196,7 @@ def admin_withdrawals(status: str = None, user: dict = Depends(require_role("adm
     where = "1=1"
     params = []
     if status:
-        where = "status=%s"
+        where = "w.status=%s"
         params.append(status)
     rows = db.query(f"SELECT w.*, u.nickname AS coach_name FROM withdrawals w JOIN users u ON u.id=w.coach_id "
                     f"WHERE {where} ORDER BY w.id DESC", tuple(params))
